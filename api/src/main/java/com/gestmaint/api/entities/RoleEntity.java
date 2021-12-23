@@ -1,5 +1,6 @@
 package com.gestmaint.api.entities;
 
+import com.gestmaint.api.utils.RoleName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,21 +10,15 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "users")
-public class UserEntity {
+@Entity(name = "roles")
+public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20, nullable = false)
-    private String username;
-
-    @Column(nullable = false)
-    private String encryptedPassword;
-
-    @OneToOne
-    @JoinColumn(name = "role_id")
-    private RoleEntity role;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private RoleName name;
 
 }
