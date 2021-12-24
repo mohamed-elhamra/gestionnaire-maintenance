@@ -1,6 +1,7 @@
 package com.gestmaint.api.security;
 
 import com.gestmaint.api.services.UserService;
+import com.gestmaint.api.utils.RoleName;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -11,12 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @AllArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
+    private final AuthorizationFilter authorizationFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,10 +32,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/users/authenticate", "/users")
                 .permitAll()
+                .antMatchers(HttpMethod.GET, "/users")
+                .hasAuthority(RoleName.ROLE_ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
-                .addFilter(new AuthorizationFilter(authenticationManager()))
+                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

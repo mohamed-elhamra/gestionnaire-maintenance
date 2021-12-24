@@ -3,6 +3,7 @@ package com.gestmaint.api.mapper;
 import com.gestmaint.api.dtos.UserDto;
 import com.gestmaint.api.entities.RoleEntity;
 import com.gestmaint.api.entities.UserEntity;
+import com.gestmaint.api.exceptions.GestMaintException;
 import com.gestmaint.api.repositories.RoleRepository;
 import com.gestmaint.api.utils.RoleName;
 import org.mapstruct.Mapping;
@@ -23,6 +24,6 @@ public abstract class Mapper {
 
     protected RoleEntity getRoleEntity(String name){
         return roleRepository.findByName(RoleName.valueOf(name))
-                .orElseThrow(() -> new RuntimeException("Role not fount with this name: " + name));
+                .orElseThrow(() -> new GestMaintException("Role not fount with this name: " + name));
     }
 }
