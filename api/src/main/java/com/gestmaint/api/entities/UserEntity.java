@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -25,5 +28,14 @@ public class UserEntity {
     @OneToOne
     @JoinColumn(name = "role_id")
     private RoleEntity role;
+
+    @OneToMany(mappedBy = "resourceManager")
+    private List<ResourceEntity> resources;
+
+    @OneToMany(mappedBy = "reporter")
+    private List<AnomalyEntity> reportedAnomalies;
+
+    @OneToMany(mappedBy = "assignee")
+    private List<AnomalyEntity> assignedAnomalies;
 
 }

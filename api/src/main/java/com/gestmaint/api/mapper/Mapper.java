@@ -5,7 +5,7 @@ import com.gestmaint.api.entities.RoleEntity;
 import com.gestmaint.api.entities.UserEntity;
 import com.gestmaint.api.exceptions.GestMaintException;
 import com.gestmaint.api.repositories.RoleRepository;
-import com.gestmaint.api.utils.RoleName;
+import com.gestmaint.api.utils.ERole;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +23,7 @@ public abstract class Mapper {
 
 
     protected RoleEntity getRoleEntity(String name){
-        return roleRepository.findByName(RoleName.valueOf(name))
+        return roleRepository.findByName(ERole.valueOf(name))
                 .orElseThrow(() -> new GestMaintException("Role not fount with this name: " + name));
     }
 }

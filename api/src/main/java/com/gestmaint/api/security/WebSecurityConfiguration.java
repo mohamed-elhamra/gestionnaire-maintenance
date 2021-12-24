@@ -1,7 +1,7 @@
 package com.gestmaint.api.security;
 
 import com.gestmaint.api.services.UserService;
-import com.gestmaint.api.utils.RoleName;
+import com.gestmaint.api.utils.ERole;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -33,7 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users/authenticate", "/users")
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/users")
-                .hasAuthority(RoleName.ROLE_ADMIN.name())
+                .hasAuthority(ERole.ROLE_ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()

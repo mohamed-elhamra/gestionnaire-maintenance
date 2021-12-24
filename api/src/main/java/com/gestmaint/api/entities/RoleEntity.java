@@ -1,6 +1,6 @@
 package com.gestmaint.api.entities;
 
-import com.gestmaint.api.utils.RoleName;
+import com.gestmaint.api.utils.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +19,6 @@ public class RoleEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private RoleName name;
+    private ERole name;
 
 }
