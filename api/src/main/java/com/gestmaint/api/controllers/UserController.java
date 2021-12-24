@@ -1,7 +1,6 @@
 package com.gestmaint.api.controllers;
 
 import com.gestmaint.api.dtos.UserDto;
-import com.gestmaint.api.entities.UserEntity;
 import com.gestmaint.api.requests.AuthenticationRequest;
 import com.gestmaint.api.responses.AuthenticationResponse;
 import com.gestmaint.api.services.UserService;
@@ -32,23 +31,23 @@ public class UserController {
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest){
-            try {
-                authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
-                );
-            } catch (BadCredentialsException e) {
-                throw new RuntimeException("Username or password is incorrect");
-            }
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+            );
+        } catch (BadCredentialsException e) {
+            throw new RuntimeException("Username or password is incorrect");
+        }
 
-            final UserDetails user = userService.loadUserByUsername(authenticationRequest.getUsername());
-            final String jwt = jwtTokenUtil.generateToken(user);
+        final UserDetails user = userService.loadUserByUsername(authenticationRequest.getUsername());
+        final String jwt = jwtTokenUtil.generateToken(user);
 
-            return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(userDto));
     }
 

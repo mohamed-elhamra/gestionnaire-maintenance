@@ -7,7 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -34,14 +33,14 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         String jwt = request.getHeader(SecurityConstants.HEADER_STRING);
         String username = null;
 
-        if(jwt != null && jwt.startsWith(SecurityConstants.TOKEN_PREFIX) && !jwt.equals("Bearer null")){
+        if (jwt != null && jwt.startsWith(SecurityConstants.TOKEN_PREFIX) && !jwt.equals("Bearer null")) {
             jwt = jwt.replace(SecurityConstants.TOKEN_PREFIX, "");
             username = jwtTokenUtil.getUsernameFromToken(jwt);
         }
 
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.loadUserByUsername(username);
-            if(!jwtTokenUtil.validateToken(jwt, userDetails)){
+            if (!jwtTokenUtil.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
