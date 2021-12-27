@@ -16,9 +16,7 @@ public class ApiApplication extends SpringBootServletInitializer {
 
     @Bean
     public CommandLineRunner start(AfterStartingService afterStartingService) {
-        return args -> {
-            afterStartingService.afterStarting();
-        };
+        return args -> afterStartingService.afterStarting();
     }
 
 }
