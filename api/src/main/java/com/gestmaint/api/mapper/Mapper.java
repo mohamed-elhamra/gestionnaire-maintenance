@@ -9,6 +9,8 @@ import com.gestmaint.api.utils.ERole;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @org.mapstruct.Mapper(componentModel = "spring")
 public abstract class Mapper {
 
@@ -20,6 +22,8 @@ public abstract class Mapper {
 
     @Mapping(target = "role", expression = "java(getRoleEntity(userDto.getRole()))")
     public abstract UserEntity toUserEntity(UserDto userDto);
+
+    public abstract List<UserDto> toUserDtoList(List<UserEntity> userEntities);
 
 
     protected RoleEntity getRoleEntity(String name){

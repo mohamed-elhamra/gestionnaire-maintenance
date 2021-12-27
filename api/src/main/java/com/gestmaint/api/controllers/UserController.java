@@ -14,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -48,9 +50,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(userDto));
     }
 
-    @GetMapping
-    public ResponseEntity<String> test(){
-        return ResponseEntity.ok("test");
+    @GetMapping("/maintenanceManagers")
+    public ResponseEntity<List<UserDto>> getAllMaintenanceManagers(){
+        return ResponseEntity.ok(userService.getAllMaintenanceManagers());
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<String> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

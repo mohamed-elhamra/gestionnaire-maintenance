@@ -30,9 +30,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users/authenticate", "/users")
+                .antMatchers(HttpMethod.POST, "/users")
+                .hasAuthority(ERole.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/users/authenticate")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/users")
+                .antMatchers(HttpMethod.DELETE, "/users/*")
                 .hasAuthority(ERole.ROLE_ADMIN.name())
                 .anyRequest()
                 .authenticated()

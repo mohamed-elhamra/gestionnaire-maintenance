@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -32,8 +30,8 @@ public class ResourceEntity {
     private String localisation;
 
     @ManyToOne
-    @JoinColumn(name = "resourceManager_id")
-    private UserEntity resourceManager;
+    @JoinColumn(name = "maintenanceManager_id")
+    private UserEntity maintenanceManager;
 
     @OneToMany(mappedBy = "resource")
     private List<AnomalyEntity> anomalies;
