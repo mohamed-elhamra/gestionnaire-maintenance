@@ -33,10 +33,6 @@ public class AnomalyEntity {
     private EStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "reporter_id")
-    private UserEntity reporter;
-
-    @ManyToOne
     @JoinColumn(name = "assignee_id")
     private UserEntity assignee;
 

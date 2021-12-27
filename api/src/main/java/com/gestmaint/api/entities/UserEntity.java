@@ -30,9 +30,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "maintenanceManager")
     private List<ResourceEntity> resources;
 
-    @OneToMany(mappedBy = "reporter")
-    private List<AnomalyEntity> reportedAnomalies;
-
     @OneToMany(mappedBy = "assignee")
     private List<AnomalyEntity> assignedAnomalies;
 

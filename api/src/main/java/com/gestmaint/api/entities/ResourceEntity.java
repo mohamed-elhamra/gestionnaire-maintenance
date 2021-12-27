@@ -17,6 +17,7 @@ public class ResourceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String publicId;
 
     @Column(length = 20, nullable = false, unique = true)
@@ -26,7 +27,7 @@ public class ResourceEntity {
     @Column(nullable = false, length = 512)
     private String description;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 50, nullable = false)
     private String localisation;
 
     @ManyToOne
