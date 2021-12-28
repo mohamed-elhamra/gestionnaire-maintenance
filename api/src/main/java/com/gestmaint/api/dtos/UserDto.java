@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 public class UserDto {
 
     @NotNull(message = "Username should not be null")
-    @Size(min = 3, max = 50, message = "Username size should be between 3 and 50 character")
+    @Size(min = 4, max = 50, message = "Username size should be between 3 and 50 character")
     private String username;
 
     @NotNull(message = "Password should not be null")

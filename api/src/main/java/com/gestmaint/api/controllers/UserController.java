@@ -42,7 +42,7 @@ public class UserController {
         final UserDetails user = userService.loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtTokenUtil.generateToken(user);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(user.getUsername(), jwt));
     }
 
     @PostMapping

@@ -1,0 +1,55 @@
+<div class="row mt-5">
+    <div class="mx-auto">
+      <h2>Sign in</h2>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-6 mx-auto">
+      <form [formGroup]="form" (submit)="login()">
+        <fieldset>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="username" class="form-control" 
+                 placeholder="Username"
+                 formControlName="username"
+                 [class.is-invalid]="f['username'].errors && f['username'].touched"
+            />
+            <div *ngIf="f['username'].errors && f['username'].touched">
+              <div class="text-danger" *ngIf="f['username'].errors['required']">
+                Username is required is required
+              </div>
+              <div class="text-danger" 
+                *ngIf="f['username'].errors['minlength'] || f['username'].errors['maxlength']"
+              >
+                Username must be between 4 and 20 characters
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" class="form-control" 
+                placeholder="Password"
+                formControlName="password"
+                [class.is-invalid]="f['password'].errors && f['password'].touched"
+            />
+            <div *ngIf="f['password'].errors && f['password'].touched">
+              <div class="text-danger" *ngIf="f['password'].errors['required']">
+                Password is required
+              </div>
+              <div class="text-danger" 
+                *ngIf="f['password'].errors['minlength'] || f['password'].errors['maxlength']"
+              >
+                Password must be between 4 and 20 characters
+              </div>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-success btn-block">
+            Login
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </div>

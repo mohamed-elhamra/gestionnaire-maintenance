@@ -39,13 +39,13 @@ services:
       - db
 
   #Fron-end Angular Application
-  #front:
-  #  build: ./angular-app
-  #  container_name: front
-  #  ports:
-  #    - 4200:80
-  #  links:
-  #    - api
+  front:
+   build: ./front
+   container_name: front
+   ports:
+     - 4200:80
+   links:
+     - api
 
 #Volumes for DB data
 volumes:
