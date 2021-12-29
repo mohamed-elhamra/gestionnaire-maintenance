@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DeleteBtnComponent } from './../delete-btn/delete-btn.component';
+import {  Component, OnInit, TemplateRef } from '@angular/core';
+import { ColDef } from 'ag-grid-community';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-import { environment } from 'src/environments/environment';
-declare var $: any;
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-list-users',
@@ -14,42 +13,109 @@ declare var $: any;
 })
 export class ListUsersComponent implements OnInit {
 
-  dataTable: any = [];
-  dtOptions: any = [];
   maintenanceManagers: User[] = [];
+  
+  //grid config
+  columnDefs: any;
+  frameworkComponents: any;
+  defaultColDef: any;
+  gridOptions: any;
+  autoGroupColumnDef: any;
+  rowData: User[] = []; 
+  gridApi: any;
+  gridColumnApi: any;
 
-  @ViewChild('dataTable', {static: true}) table: any;
 
   constructor(
     private userService: UserService,
-    private toaster: ToastrService,
-    private http: HttpClient
-  ) { }
+    private toaster: ToastrService
+  ) { 
+    this.columnDefs = [
+      {
+        headerName: 'User name',
+        field: 'username',
+        sortable: true,
+        filter: 'agTextColumnFilter',
+        cellClass: ['text-center'],
+      },
+      {
+        headerName: 'First name',
+        field: 'firstName',
+        sortable: true,
+        filter: 'agTextColumnFilter',
+        cellClass: ['text-center'],
+      },
+      {
+        headerName: 'Last name',
+        field: 'lastName',
+        sortable: true,
+        filter: 'agTextColumnFilter',
+        cellClass: ['text-center'],
+      },
+      {
+        headerName: 'Email',
+        field: 'email',
+        sortable: true,
+        filter: 'agTextColumnFilter',
+        cellClass: ['text-center'],
+      },
+      {
+        field: 'delete',
+        cellRenderer: 'deleteBtlCellRenderer',
+        editable: false,
+        cellClass: ['no-border', 'text-center'],
+        width: 50,
+        cellRendererParams: {
+          clicked: (params: any) => this.deleteUser(params),
+        },
+        minWidth: 150,
+      }
+    ];
+
+    this.frameworkComponents = {
+      deleteBtlCellRenderer: DeleteBtnComponent
+    };
+
+    this.autoGroupColumnDef = {  };
+
+    this.gridOptions = {
+      suppressCellSelection: true
+    };
+
+    this.defaultColDef = {
+      flex: 1,
+      sortable: true,
+      filter: true,
+    };
+
+   }
 
   ngOnInit(): void {
     this.userService.getMaintenanceManager().subscribe({
       next: res => {
-        console.log(res);
-        
         this.maintenanceManagers = res;
-        this.dtOptions = {
-          data: this.maintenanceManagers,
-          columns: [
-            {title: 'User name', data: 'username'},
-            {title: 'First name', data: 'firstName'},
-            {title: 'Last name', data: 'lastName'},
-            {title: 'Email', data: 'email'},
-          ]
-        }
+        this.rowData = res;
       },
       error: err => {
         this.toaster.error('Bad credentials, try again', 'Gestionnaire maintenance');
-      },
-      complete: () => {
-        this.dataTable = $(this.table.nativeElement);
-        this.dataTable.DataTable(this.dtOptions);
       }
     })
+  }
+
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  deleteUser(params: any){
+    let userToDelete;
+    this.gridApi.forEachNode((node: any, index: any) => {
+      if (node.data.username === params.data.username) {
+        node.data= params.data;
+        userToDelete = node.data;
+      }
+    });
+    this.gridApi.applyTransaction({ remove: [userToDelete] });
   }
 
 }

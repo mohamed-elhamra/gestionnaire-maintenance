@@ -12,6 +12,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { DeleteBtnComponent } from './components/delete-btn/delete-btn.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { DeleteBtnComponent } from './components/delete-btn/delete-btn.component
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    AgGridModule.withComponents([DeleteBtnComponent]),
+    ModalModule.forRoot(),
   ],
   providers: [
     {

@@ -1,3 +1,22 @@
-<table #dataTable style="width: 100%;">
-</table>
+
+<button class="btn btn-sm btn-info">Add user</button>
+
+<ag-grid-angular
+    style="width: 802px; height: 500px;"
+    class="ag-theme-alpine"
+    [frameworkComponents]="frameworkComponents" 
+    [rowData]="rowData"
+    [columnDefs]="columnDefs" 
+    [defaultColDef]="defaultColDef" 
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [gridOptions]="gridOptions"
+    [enableRangeSelection]="true"
+    [animateRows]="true"
+    [pagination]="true"
+    [suppressMovableColumns]="true" 
+    [suppressMovableColumns]="true" 
+    (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>
+
   

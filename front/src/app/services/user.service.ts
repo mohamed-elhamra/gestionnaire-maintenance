@@ -19,4 +19,8 @@ export class UserService {
     return this.http.get<User[]>(`${environment.apiURL}/users/maintenanceManagers`);
   }
 
+  deleteMaintenanceManager(username: string){
+    return this.http.delete(`${environment.apiURL}/users/${username}`);
+  }
+
 }
