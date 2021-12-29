@@ -30,7 +30,7 @@ public class AfterStartingServiceImpl implements AfterStartingService {
                 .orElseThrow(() -> new GestMaintException("There is no role with this name: " + ERole.ROLE_ADMIN.name()));
 
         if (userRepository.findByRole(adminRole).size() == 0) {
-            userService.saveUser(new UserDto("admin", "admin", ERole.ROLE_ADMIN.name()));
+            userService.saveUser(new UserDto("admin", "admin", "admin", "admin", "admin", ERole.ROLE_ADMIN.name()));
         }
     }
 }

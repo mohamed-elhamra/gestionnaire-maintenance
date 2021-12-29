@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder, 
     private toaster: ToastrService,
     private jwtService: JwtService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +37,8 @@ export class LoginComponent implements OnInit {
       next: res => {
         this.jwtService.handle(res);
         this.accountService.changeStatus(true);
-        this.toaster.success('Login successfully', 'Eat it');
+        this.toaster.success('Login successfully', 'Gestionnaire maintenance');
+        this.router.navigateByUrl('/users');
       },
       error: err => {
         this.toaster.error('Bad credentials, try again', 'Gestionnaire maintenance');

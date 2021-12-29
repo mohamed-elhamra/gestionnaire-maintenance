@@ -1,0 +1,4 @@
+export enum OrderStatus {
+    ROLE_ADMIN = 'ROLE_ADMIN',
+    ROLE_MAINTENANCE_MANAGER = 'ROLE_MAINTENANCE_MANAGER',
+  }

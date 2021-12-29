@@ -5,8 +5,10 @@ import com.gestmaint.api.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class ResourceController {
     private ResourceService resourceService;
 
     @PostMapping
-    public ResponseEntity<ResourceDto> createResource(@RequestBody ResourceDto resourceDto) {
+    public ResponseEntity<ResourceDto> createResource(@RequestBody @Valid ResourceDto resourceDto) {
         return ResponseEntity.ok(resourceService.createResource(resourceDto));
     }
 
