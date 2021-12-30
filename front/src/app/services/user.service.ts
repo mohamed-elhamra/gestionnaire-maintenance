@@ -23,4 +23,8 @@ export class UserService {
     return this.http.delete(`${environment.apiURL}/users/${username}`);
   }
 
+  createMaintenanceManager(user: User): Observable<User>{
+    return this.http.post<User>(`${environment.apiURL}/users`, user);
+  }
+
 }

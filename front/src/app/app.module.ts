@@ -14,13 +14,15 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { DeleteBtnComponent } from './components/delete-btn/delete-btn.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ListUsersComponent,
-    DeleteBtnComponent
+    DeleteBtnComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

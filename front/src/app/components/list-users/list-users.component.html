@@ -1,5 +1,5 @@
 
-<button class="btn btn-sm btn-info">Add user</button>
+<button class="btn btn-sm btn-info" (click)="openModal(template)">Add user</button>
 
 <ag-grid-angular
     style="width: 802px; height: 500px;"
@@ -18,5 +18,18 @@
     (gridReady)="onGridReady($event)"
 >
 </ag-grid-angular>
+
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Create user</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-create-user (addUserEvent)="addUser($event)"></app-create-user>
+    </div>
+</ng-template>
 
   

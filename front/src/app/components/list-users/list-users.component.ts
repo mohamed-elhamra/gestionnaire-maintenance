@@ -25,10 +25,13 @@ export class ListUsersComponent implements OnInit {
   gridApi: any;
   gridColumnApi: any;
 
+  //create user
+  modalRef?: BsModalRef;
 
   constructor(
     private userService: UserService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private modalService: BsModalService
   ) { 
     this.columnDefs = [
       {
@@ -116,6 +119,26 @@ export class ListUsersComponent implements OnInit {
       }
     });
     this.gridApi.applyTransaction({ remove: [userToDelete] });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg' });
+  }
+
+  addUser(user: User){
+    console.log(user);
+    this.userService.createMaintenanceManager(user).subscribe({
+      next: res => {
+        const transaction = {
+          add: [user]
+        };
+        this.gridApi.applyTransaction(transaction);
+      },
+      error: err => {
+        this.toaster.error(err.error.message, 'Gestionnaire maintenance');
+      }
+    })
+    this.modalRef?.hide();
   }
 
 }

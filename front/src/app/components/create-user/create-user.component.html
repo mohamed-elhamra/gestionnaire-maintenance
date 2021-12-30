@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-12 mx-auto">
+      <form [formGroup]="form" (submit)="onSubmit()">
+        <fieldset>
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input
+              id="firstName"
+              name="firstName"
+              formControlName="firstName"
+              type="text"
+              class="form-control"
+              placeholder="First name"
+              [class.is-invalid]="f['firstName'].errors && f['firstName'].touched"
+            />
+            <div *ngIf="f['firstName'].errors && f['firstName'].touched">
+              <div class="text-danger" *ngIf="f['firstName'].errors['required']">
+                First name is required
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="f['firstName'].errors['minlength'] || f['firstName'].errors['maxlength']"
+              >
+                First name must be between 4 and 15 characters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input
+              id="lastName"
+              name="lastName"
+              formControlName="lastName"
+              type="text"
+              class="form-control"
+              placeholder="Last name"
+              [class.is-invalid]="f['lastName'].errors && f['lastName'].touched"
+            />
+            <div *ngIf="f['lastName'].errors && f['lastName'].touched">
+              <div class="text-danger" *ngIf="f['lastName'].errors['required']">
+                Last name is required
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="f['lastName'].errors['minlength'] || f['lastName'].errors['maxlength']"
+              >
+                Last name must be between 4 and 15 characters
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              formControlName="email"
+              type="email"
+              class="form-control"
+              placeholder="Enter email"
+              [class.is-invalid]="f['email'].errors && f['email'].touched"
+            />
+            <div *ngIf="f['email'].errors && f['email'].touched">
+              <div class="text-danger" *ngIf="f['email'].errors['required']">
+                Email is required
+              </div>
+              <div class="text-danger" *ngIf="f['email'].errors['email']">
+                Email format is incorrect
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">User name</label>
+            <input
+              id="username"
+              name="username"
+              formControlName="username"
+              type="text"
+              class="form-control"
+              placeholder="User name"
+              [class.is-invalid]="f['username'].errors && f['username'].touched"
+            />
+            <div *ngIf="f['username'].errors && f['username'].touched">
+              <div class="text-danger" *ngIf="f['username'].errors['required']">
+                User name is required
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="f['username'].errors['minlength'] || f['username'].errors['maxlength']"
+              >
+                User name must be between 4 and 15 characters
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              formControlName="password"
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              [class.is-invalid]="f['password'].errors && f['password'].touched"
+            />
+            <div *ngIf="f['password'].errors && f['password'].touched">
+              <div class="text-danger" *ngIf="f['password'].errors['required']">
+                Password is required
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="f['password'].errors['minlength'] || f['password'].errors['maxlength']"
+              >
+                Password must be between 4 and 15 characters
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              formControlName="confirmPassword"
+              type="password"
+              class="form-control"
+              placeholder=" Confirm password"
+            />
+            <div class="text-danger" *ngIf="form.getError('misMatch')">
+              Password do not match
+            </div>
+          </div>
+  
+          <div class="text-center">
+            <button
+                type="submit"
+                class="btn btn-success btn-block mt-3"
+                [disabled]="form.invalid"
+            >
+                Save
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
