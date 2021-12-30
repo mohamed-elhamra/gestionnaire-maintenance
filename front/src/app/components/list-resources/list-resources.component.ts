@@ -38,8 +38,7 @@ export class ListResourcesComponent implements OnInit {
         //   add: [user]
         // };
         // this.gridApi.applyTransaction(transaction);
-        console.log(res);
-        
+        console.log(res); 
       },
       error: err => {
         this.toaster.error(err.error.message, 'Gestionnaire maintenance');

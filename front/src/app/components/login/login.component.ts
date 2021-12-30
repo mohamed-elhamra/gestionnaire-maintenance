@@ -26,6 +26,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.jwtService.isLogged()) {
+      const role = this.jwtService.getInfos().authorities[0].authority;
+      if(ERole.ROLE_ADMIN == role) this.router.navigateByUrl('/users');
+      if(ERole.ROLE_MAINTENANCE_MANAGER == role) this.router.navigateByUrl('/resources');
+    }
+
     this.form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
@@ -39,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.jwtService.handle(res);
         this.accountService.changeStatus(true);
         this.toaster.success('Login successfully', 'Gestionnaire maintenance');
-        
+
         const role = this.jwtService.getInfos().authorities[0].authority;
         if(ERole.ROLE_ADMIN == role) this.router.navigateByUrl('/users');
         if(ERole.ROLE_MAINTENANCE_MANAGER == role) this.router.navigateByUrl('/resources');
