@@ -1,0 +1,13 @@
+<button class="btn btn-sm btn-info" (click)="openModal(template)">Create resource</button>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Create user</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-create-resource (addResourceEvent)="addResource($event)"></app-create-resource>
+    </div>
+</ng-template>

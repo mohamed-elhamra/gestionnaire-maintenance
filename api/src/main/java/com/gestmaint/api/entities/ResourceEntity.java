@@ -27,6 +27,9 @@ public class ResourceEntity {
     @Column(nullable = false, length = 512)
     private String description;
 
+    @Column(nullable = false)
+    private boolean isOutOfService;
+
     @Column(length = 50, nullable = false)
     private String localisation;
 
@@ -34,7 +37,7 @@ public class ResourceEntity {
     @JoinColumn(name = "maintenanceManager_id")
     private UserEntity maintenanceManager;
 
-    @OneToMany(mappedBy = "resource")
+    @OneToMany(mappedBy = "resource", cascade = CascadeType.REMOVE)
     private List<AnomalyEntity> anomalies;
 
 }

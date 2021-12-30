@@ -61,10 +61,10 @@ export class ListUsersComponent implements OnInit {
         sortable: true,
         filter: 'agTextColumnFilter',
         cellClass: ['text-center'],
-        resizable: true
+        resizable: true,
       },
       {
-        field: 'delete',
+        field: 'actions',
         cellRenderer: 'deleteBtlCellRenderer',
         editable: false,
         cellClass: ['no-border', 'text-center'],
@@ -88,8 +88,6 @@ export class ListUsersComponent implements OnInit {
 
     this.defaultColDef = {
       flex: 1,
-      sortable: true,
-      filter: true,
     };
 
    }
@@ -123,7 +121,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-lg' });
+    this.modalRef = this.modalService.show(template, {class: 'modal-md' });
   }
 
   addUser(user: User){

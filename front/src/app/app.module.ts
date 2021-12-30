@@ -14,6 +14,10 @@ import { DeleteBtnComponent } from './components/delete-btn/delete-btn.component
 import { AgGridModule } from 'ag-grid-angular';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { ListResourcesComponent } from './components/list-resources/list-resources.component';
+import { CustomTooltipComponent } from './components/custom-tooltip/custom-tooltip.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { CreateResourceComponent } from './components/create-resource/create-resource.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
     LoginComponent,
     ListUsersComponent,
     DeleteBtnComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    ListResourcesComponent,
+    CustomTooltipComponent,
+    CreateResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +40,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
     ToastrModule.forRoot(),
     AgGridModule.withComponents([DeleteBtnComponent]),
     ModalModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [
     {

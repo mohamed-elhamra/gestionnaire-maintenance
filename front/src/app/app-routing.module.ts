@@ -1,3 +1,4 @@
+import { ListResourcesComponent } from './components/list-resources/list-resources.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListUsersComponent } from './components/list-users/list-users.component';
@@ -7,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'users', component: ListUsersComponent },
+  { path: 'resources', component: ListResourcesComponent },
 ];
 
 @NgModule({
