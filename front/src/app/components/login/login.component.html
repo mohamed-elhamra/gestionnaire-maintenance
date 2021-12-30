@@ -1,5 +1,5 @@
 <div class="row mt-5">
-    <div class="mx-auto">
+    <div class="text-center">
       <h2>Sign in</h2>
     </div>
   </div>
@@ -46,9 +46,11 @@
             </div>
           </div>
   
-          <button type="submit" class="btn btn-success btn-block">
-            Login
-          </button>
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="form.invalid">
+              Login
+            </button>
+          </div>
         </fieldset>
       </form>
     </div>

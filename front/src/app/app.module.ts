@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { DataTablesModule } from "angular-datatables";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -27,7 +26,6 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DataTablesModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

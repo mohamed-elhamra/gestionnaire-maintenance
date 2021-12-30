@@ -1,3 +1,4 @@
+import { ERole } from './../../models/role.enum';
 import { AccountService } from './../../services/account.service';
 import { JwtService } from './../../services/token.service';
 import { Component, OnInit } from '@angular/core';
@@ -38,7 +39,8 @@ export class LoginComponent implements OnInit {
         this.jwtService.handle(res);
         this.accountService.changeStatus(true);
         this.toaster.success('Login successfully', 'Gestionnaire maintenance');
-        this.router.navigateByUrl('/users');
+        const role = this.jwtService.getInfos().authorities[0].authority;
+        if(ERole.ROLE_ADMIN == role) this.router.navigateByUrl('/users');
       },
       error: err => {
         this.toaster.error('Bad credentials, try again', 'Gestionnaire maintenance');

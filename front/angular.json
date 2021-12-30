@@ -33,13 +33,11 @@
               "src/styles.css",
               "./node_modules/ngx-toastr/toastr.css",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/bootswatch/dist/journal/bootstrap.min.css",
-              "./node_modules/datatables.net-dt/css/jquery.dataTables.css"
+              "./node_modules/bootswatch/dist/journal/bootstrap.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./node_modules/datatables.net/js/jquery.dataTables.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {

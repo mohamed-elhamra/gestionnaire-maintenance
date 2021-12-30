@@ -61,6 +61,7 @@ export class ListUsersComponent implements OnInit {
         sortable: true,
         filter: 'agTextColumnFilter',
         cellClass: ['text-center'],
+        resizable: true
       },
       {
         field: 'delete',
@@ -126,7 +127,6 @@ export class ListUsersComponent implements OnInit {
   }
 
   addUser(user: User){
-    console.log(user);
     this.userService.createMaintenanceManager(user).subscribe({
       next: res => {
         const transaction = {
