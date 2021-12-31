@@ -20,7 +20,7 @@ public class ResourceController {
 
     @PostMapping
     public ResponseEntity<ResourceDto> createResource(@RequestBody @Valid ResourceDto resourceDto) {
-        return ResponseEntity.ok(resourceService.createResource(resourceDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(resourceService.createResource(resourceDto));
     }
 
     @GetMapping

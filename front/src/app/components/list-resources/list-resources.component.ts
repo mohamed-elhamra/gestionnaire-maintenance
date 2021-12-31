@@ -73,7 +73,6 @@ export class ListResourcesComponent implements OnInit {
         headerName: 'Status',
         field: 'outOfService',
         sortable: true,
-        filter: 'agTextColumnFilter',
         cellClass: ['text-center'],
         resizable: true,
         cellRenderer: (params: any) => {

@@ -1,4 +1,4 @@
-import { AnomalyComponent } from './components/anomaly/anomaly.component';
+import { CreateAnomalyComponent } from './components/create-anomaly/create-anomaly';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { RoleGuard } from './security/role.guard';
 import { ListResourcesComponent } from './components/list-resources/list-resources.component';
@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: ListUsersComponent, canActivate: [RoleGuard] },
+  
   { path: 'resources', 
     canActivate: [RoleGuard], 
     children: [
@@ -18,7 +19,7 @@ const routes: Routes = [
       { path: ':publicId/ticket', component: TicketComponent },
     ]
   },
-  { path: 'resources/:publicId/anomaly', component: AnomalyComponent},
+  { path: 'resources/:publicId/anomaly', component: CreateAnomalyComponent },
   { path: '**', component: LoginComponent },
 ];
 

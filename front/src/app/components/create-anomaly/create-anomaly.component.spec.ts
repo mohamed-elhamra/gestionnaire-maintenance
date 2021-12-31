@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnomalyComponent } from './anomaly.component';
+import { CreateAnomalyComponent } from './create-anomaly';
 
-describe('AnomalyComponent', () => {
-  let component: AnomalyComponent;
-  let fixture: ComponentFixture<AnomalyComponent>;
+describe('CreateAnomalyComponent', () => {
+  let component: CreateAnomalyComponent;
+  let fixture: ComponentFixture<CreateAnomalyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AnomalyComponent ]
+      declarations: [ CreateAnomalyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AnomalyComponent);
+    fixture = TestBed.createComponent(CreateAnomalyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

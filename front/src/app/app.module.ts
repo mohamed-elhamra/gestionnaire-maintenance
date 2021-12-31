@@ -22,7 +22,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { TextCellRendrerComponent } from './components/text-cell-rendrer/text-cell-rendrer.component';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { QRCodeModule } from 'angular2-qrcode';
-import { AnomalyComponent } from './components/anomaly/anomaly.component';
+import { CreateAnomalyComponent } from './components/create-anomaly/create-anomaly';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,7 @@ import { AnomalyComponent } from './components/anomaly/anomaly.component';
     NavBarComponent,
     TextCellRendrerComponent,
     TicketComponent,
-    AnomalyComponent,
+    CreateAnomalyComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,7 @@ import { AnomalyComponent } from './components/anomaly/anomaly.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 1100
+      timeOut: 2000
     }),
     AgGridModule.withComponents([DeleteBtnComponent]),
     ModalModule.forRoot(),
