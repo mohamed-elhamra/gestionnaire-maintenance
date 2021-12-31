@@ -28,6 +28,11 @@ public class ResourceController {
         return ResponseEntity.ok(resourceService.getAllResources());
     }
 
+    @GetMapping("/{publicId}")
+    public ResponseEntity<ResourceDto> getResourceByPublicId(@PathVariable String publicId){
+        return ResponseEntity.ok(resourceService.getResourceByPublicId(publicId));
+    }
+
     @DeleteMapping("/{publicId}")
     public ResponseEntity<String> deleteResource(@PathVariable String publicId){
         resourceService.deleteResource(publicId);

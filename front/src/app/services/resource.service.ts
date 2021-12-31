@@ -23,4 +23,8 @@ export class ResourceService {
     return this.http.delete(`${environment.apiURL}/resources/${publicId}`);
   }
 
+  getResourceByPublicId(publicId: string): Observable<Resource>{
+    return this.http.get<Resource>(`${environment.apiURL}/resources/${publicId}`);
+  }
+
 }

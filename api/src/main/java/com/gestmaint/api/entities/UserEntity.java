@@ -36,7 +36,7 @@ public class UserEntity {
     @JoinColumn(name = "role_id")
     private RoleEntity role;
 
-    @OneToMany(mappedBy = "maintenanceManager")
+    @OneToMany(mappedBy = "maintenanceManager", cascade = {CascadeType.REMOVE})
     private List<ResourceEntity> resources;
 
     @OneToMany(mappedBy = "assignee")

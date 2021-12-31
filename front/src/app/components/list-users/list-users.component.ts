@@ -64,7 +64,7 @@ export class ListUsersComponent implements OnInit {
         resizable: true,
       },
       {
-        field: 'actions',
+        field: 'delete',
         cellRenderer: 'deleteBtlCellRenderer',
         editable: false,
         cellClass: ['no-border', 'text-center'],

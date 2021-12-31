@@ -20,7 +20,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CreateResourceComponent } from './components/create-resource/create-resource.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { TextCellRendrerComponent } from './components/text-cell-rendrer/text-cell-rendrer.component';
-
+import { TicketComponent } from './components/ticket/ticket.component';
+import { QRCodeModule } from 'angular2-qrcode';
+import { AnomalyComponent } from './components/anomaly/anomaly.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { TextCellRendrerComponent } from './components/text-cell-rendrer/text-ce
     CustomTooltipComponent,
     CreateResourceComponent,
     NavBarComponent,
-    TextCellRendrerComponent
+    TextCellRendrerComponent,
+    TicketComponent,
+    AnomalyComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,10 +45,13 @@ import { TextCellRendrerComponent } from './components/text-cell-rendrer/text-ce
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 1100
+    }),
     AgGridModule.withComponents([DeleteBtnComponent]),
     ModalModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    QRCodeModule
   ],
   providers: [
     {

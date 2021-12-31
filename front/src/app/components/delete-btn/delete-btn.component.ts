@@ -68,7 +68,6 @@ export class DeleteBtnComponent implements OnInit, ICellRendererAngularComp {
   }
  
   decline(): void {
-    console.log(this.params.data);
     this.modalRef?.hide();
   }
 

@@ -60,4 +60,12 @@ public class ResourceServiceImpl implements ResourceService {
         resourceRepository.delete(resourceToDelete);
     }
 
+    @Override
+    public ResourceDto getResourceByPublicId(String publicId) {
+        ResourceEntity resourceByPublicId = resourceRepository.findByPublicId(publicId)
+                .orElseThrow(() -> new GestMaintException("There is no resource with this id: " + publicId));
+
+        return mapper.toResourceDto(resourceByPublicId);
+    }
+
 }

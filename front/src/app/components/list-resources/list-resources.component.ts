@@ -1,3 +1,4 @@
+import { TicketBtnCellRendererComponent } from './../ticket-btn-cell-renderer/ticket-btn-cell-renderer.component';
 import { TextCellRendrerComponent } from './../text-cell-rendrer/text-cell-rendrer.component';
 import { JwtService } from './../../services/jwt.service';
 import { ToastrService } from 'ngx-toastr';
@@ -81,21 +82,28 @@ export class ListResourcesComponent implements OnInit {
         }
       },
       {
-        field: 'actions',
+        field: 'delete',
         cellRenderer: 'deleteBtlCellRenderer',
         editable: false,
         cellClass: ['no-border', 'text-center'],
-        width: 50,
+        width: 20,
         cellRendererParams: {
           clicked: (params: any) => this.deleteResource(params),
         },
-        minWidth: 150,
-      }
+      },
+      {
+        field: 'Ticket',
+        cellRenderer: 'ticketBtnCellRenderer',
+        editable: false,
+        cellClass: ['no-border', 'text-center'],
+        width: 20,
+      },
     ];
 
     this.frameworkComponents = {
       deleteBtlCellRenderer: DeleteBtnComponent,
-      textCellRenderer: TextCellRendrerComponent
+      textCellRenderer: TextCellRendrerComponent,
+      ticketBtnCellRenderer: TicketBtnCellRendererComponent
     };
 
     this.autoGroupColumnDef = {  };

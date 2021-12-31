@@ -11,4 +11,6 @@ public interface ResourceService {
     List<ResourceDto> getAllResources();
 
     void deleteResource(String publicId);
+
+    ResourceDto getResourceByPublicId(String publicId);
 }
