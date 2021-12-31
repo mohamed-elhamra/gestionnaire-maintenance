@@ -23,6 +23,8 @@ import { TextCellRendrerComponent } from './components/text-cell-rendrer/text-ce
 import { TicketComponent } from './components/ticket/ticket.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { CreateAnomalyComponent } from './components/create-anomaly/create-anomaly';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import { CreateAnomalyComponent } from './components/create-anomaly/create-anoma
     AgGridModule.withComponents([DeleteBtnComponent]),
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
-    QRCodeModule
+    QRCodeModule,
+    TabsModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   providers: [
     {

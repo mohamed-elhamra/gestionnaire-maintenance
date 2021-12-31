@@ -65,6 +65,7 @@ export class ListResourcesComponent implements OnInit {
         headerName: 'Descritpion',
         field: 'description',
         sortable: true,
+        resizable: true,
         filter: 'agTextColumnFilter',
         cellClass: ['text-center'],
         cellRenderer: 'textCellRenderer'
@@ -74,7 +75,6 @@ export class ListResourcesComponent implements OnInit {
         field: 'outOfService',
         sortable: true,
         cellClass: ['text-center'],
-        resizable: true,
         cellRenderer: (params: any) => {
           if(params.value == true) return 'Out of Service'
           return 'In Service';

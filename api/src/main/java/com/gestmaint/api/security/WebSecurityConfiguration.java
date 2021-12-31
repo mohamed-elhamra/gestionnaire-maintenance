@@ -46,6 +46,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/anomalies")
                 .permitAll()
+                .antMatchers(HttpMethod.GET, "/anomalies/*")
+                .permitAll()
                 .antMatchers(HttpMethod.POST, "/users/authenticate")
                 .permitAll()
                 .antMatchers(HttpMethod.DELETE, "/users/*")

@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,11 +29,6 @@ public class AnomalyServiceImpl implements AnomalyService{
     @Override
     public AnomalyDto createAnomaly(AnomalyDto anomalyDto) {
 
-        Optional<AnomalyEntity> anomalyByTitle = anomalyRepository.findByTitle(anomalyDto.getTitle());
-
-        if(anomalyByTitle.isPresent())
-            throw new GestMaintException("There is already an anomaly with this title, try to check the other section.");
-
         ResourceEntity resourceByPublicId = resourceRepository.findByPublicId(anomalyDto.getResourcePublicId())
                 .orElseThrow(() -> new GestMaintException("There is no resource with this ID : " + anomalyDto.getResourcePublicId()));
 
@@ -40,6 +36,11 @@ public class AnomalyServiceImpl implements AnomalyService{
             if(anomaly.getStatus().equals(EStatus.PROCESSING))
                 throw new GestMaintException("This resource is already out of service");
         });
+
+        Optional<AnomalyEntity> anomalyByTitle = anomalyRepository.findByTitle(anomalyDto.getTitle());
+
+        if(anomalyByTitle.isPresent())
+            throw new GestMaintException("There is already an anomaly with this title, try to check the other section.");
 
         UserEntity maintenanceManager = resourceByPublicId.getMaintenanceManager();
 
@@ -60,5 +61,15 @@ public class AnomalyServiceImpl implements AnomalyService{
     public AnomalyDto closeAnomaly(String resourcePublicId) {
         //resourceRepository.findByPublicId()
         return null;
+    }
+
+    @Override
+    public List<AnomalyDto> getAnomaliesByTitle(String anomalyTitle, String resourcePublicId) {
+
+        ResourceEntity resourceByPublicId = resourceRepository.findByPublicId(resourcePublicId)
+                .orElseThrow(() -> new GestMaintException("There is no resource with this ID : " + resourcePublicId));
+        List<AnomalyEntity> anomalyEntityList = anomalyRepository.findByTitleContainsAndResource(anomalyTitle, resourceByPublicId);
+
+        return mapper.toAnomalyDtoList(anomalyEntityList);
     }
 }

@@ -1,4 +1,24 @@
-<p>Flashez-moi</p>
-<p>Pou signaler un problème avec ce matériel</p>
-<qr-code [value]="resourceLinK"></qr-code>
-<a href="{{ resourceLinK }}">{{ resourceLinK }}</a>
+
+
+<div class="row justify-content-center mt-5 mb-2">
+    <div class="col-md-6 col-ms-12">
+        <div class="card" style="width: 100%;">
+            <div class="card-header">
+                <span class="card-title">
+                    <b>Cilquez-ici: </b><a href="{{ resourceLinK }}">{{ resourceLinK }}</a>
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3 justify-content-center">
+                        <qr-code [value]="resourceLinK"></qr-code>
+                    </div>
+                    <div class="col-9">
+                        <b>Flashez-moi</b>
+                        <p>Pou signaler un problème avec ce matériel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

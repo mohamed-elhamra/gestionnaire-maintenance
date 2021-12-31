@@ -1,92 +1,154 @@
-<div class="row justify-content-center mt-3 mb-2">
-    <div class="col-md-7 col-ms-12 text-center">
-        <h2>Anomaly declaration form</h2>
-    </div>
+<div class="row justify-content-center mt-2 mb-2">
+  <div class="col-md-7 col-ms-12 text-center">
+      <h2>Anomaly declaration</h2>
+  </div>
 </div>
 
-<div class="row justify-content-center mt-3 mb-2">
-    <div class="col-md-7 col-ms-12">
-        <div class="card" style="width: 100%;">
-            <div class="card-header">
-                <h5 class="card-title">Ressource : {{ resource.name }}</h5>
-            </div>
-            <div class="card-body">
-              <p class="card-text">{{ resource.description }}</p>
+<div>
+  <tabset>
+    <tab heading="Declare anomaly using form" id="tab1">
+    
+    <div class="row justify-content-center mt-3 mb-2">
+        <div class="col-md-7 col-ms-12">
+            <div class="card" style="width: 100%;">
+                <div class="card-header">
+                    <h5 class="card-title">Ressource : {{ resource.name }}</h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{ resource.description }}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-        <div class="row justify-content-center">
-            <div class="col-md-7 col-ms-12">
-              <form [formGroup]="form" (submit)="onSubmit()">
-                <fieldset>
-        
-                  <div class="form-group">
-                    <label for="title">Anomaly title</label>
-                    <input
-                      id="title"
-                      name="title"
-                      formControlName="title"
-                      type="text"
-                      class="form-control"
-                      placeholder="Title"
-                      [class.is-invalid]="f['title'].errors && f['title'].touched"
-                    />
-                    <div *ngIf="f['title'].errors && f['title'].touched">
-                      <div class="text-danger" *ngIf="f['title'].errors['required']">
-                        Title is required
+    
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-ms-12">
+                  <form [formGroup]="form" (submit)="onSubmit()">
+                    <fieldset>
+            
+                      <div class="form-group">
+                        <label for="title">Anomaly title</label>
+                        <input
+                          id="title"
+                          name="title"
+                          formControlName="title"
+                          type="text"
+                          class="form-control"
+                          placeholder="Title"
+                          [class.is-invalid]="f['title'].errors && f['title'].touched"
+                        />
+                        <div *ngIf="f['title'].errors && f['title'].touched">
+                          <div class="text-danger" *ngIf="f['title'].errors['required']">
+                            Title is required
+                          </div>
+                          <div
+                            class="text-danger"
+                            *ngIf="f['title'].errors['minlength'] || f['title'].errors['maxlength']"
+                          >
+                            Title must be between 4 and 60 characters
+                          </div>
+                        </div>
                       </div>
-                      <div
-                        class="text-danger"
-                        *ngIf="f['title'].errors['minlength'] || f['title'].errors['maxlength']"
-                      >
-                        Title must be between 4 and 20 characters
+            
+                      <div class="form-group">
+                        <label for="description">Anomaly description</label>
+                        <textarea 
+                            id="description"
+                            name="description"
+                            formControlName="description"
+                            type="text"
+                            class="form-control"
+                            [class.is-invalid]="f['description'].errors && f['description'].touched"
+                            rows="3"
+                            >
+                        </textarea>
+                        <div *ngIf="f['description'].errors && f['description'].touched">
+                          <div class="text-danger" *ngIf="f['description'].errors['required']">
+                            Description is required
+                          </div>
+                          <div
+                            class="text-danger"
+                            *ngIf="f['description'].errors['minlength']"
+                          >
+                            Description must have at least 4 words
+                          </div>
+                          <div
+                            class="text-danger"
+                            *ngIf="f['description'].errors['maxlength']"
+                          >
+                            Description is too long
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-        
-                  <div class="form-group">
-                    <label for="description">Anomaly description</label>
-                    <textarea 
-                        id="description"
-                        name="description"
-                        formControlName="description"
-                        type="text"
-                        class="form-control"
-                        [class.is-invalid]="f['description'].errors && f['description'].touched"
-                        rows="3"
+              
+                      <div class="text-center">
+                        <button
+                            type="submit"
+                            class="btn btn-success btn-block mt-2"
+                            [disabled]="form.invalid"
                         >
-                    </textarea>
-                    <div *ngIf="f['description'].errors && f['description'].touched">
-                      <div class="text-danger" *ngIf="f['description'].errors['required']">
-                        Description is required
+                            Save
+                        </button>
                       </div>
-                      <div
-                        class="text-danger"
-                        *ngIf="f['description'].errors['minlength']"
-                      >
-                        Description must have at least 4 words
-                      </div>
-                      <div
-                        class="text-danger"
-                        *ngIf="f['description'].errors['maxlength']"
-                      >
-                        Description is too long
-                      </div>
-                    </div>
-                  </div>
-          
-                  <div class="text-center">
-                    <button
-                        type="submit"
-                        class="btn btn-success btn-block mt-3"
-                        [disabled]="form.invalid"
-                    >
-                        Save
-                    </button>
-                  </div>
-                </fieldset>
-              </form>
+                    </fieldset>
+                  </form>
+                </div>
             </div>
+    </tab>
+    <tab heading="Declare anomaly using suggestions">
+      <div class="row justify-content-center mt-3 mb-2">
+        <div class="col-md-7 col-ms-12">
+          <div class="form-group">
+            <label>Search anomaly</label>
+            <input [(ngModel)]="search" typeaheadOptionField="title" [typeahead]="suggestions$" [typeaheadAsync]="true"
+            (typeaheadOnSelect)="typeaheadOnSelect($event)" class="form-control" placeholder="Type something ..."> 
+          </div>
         </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-ms-12">
+        <form [formGroup]="suggestionForm" (submit)="onSubmitAnomaluSuggestion()">
+          <fieldset>
+  
+            <div class="form-group">
+              <label for="suggestionTitle">Anomaly title</label>
+              <input
+                id="suggestionTitle"
+                name="suggestionTitle"
+                formControlName="suggestionTitle"
+                type="text"
+                class="form-control"
+                readonly
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="suggestionDescription">Anomaly description</label>
+              <textarea 
+                  id="suggestionDescription"
+                  name="suggestionDescription"
+                  formControlName="suggestionDescription"
+                  type="text"
+                  class="form-control"
+                  rows="3"
+                  readonly
+                  >
+              </textarea>
+            </div>
+    
+            <div class="text-center">
+              <button
+                  type="submit"
+                  class="btn btn-success btn-block mt-2"
+              >
+                  Save
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+  </div>
+    </tab>
+  </tabset>
+</div>
