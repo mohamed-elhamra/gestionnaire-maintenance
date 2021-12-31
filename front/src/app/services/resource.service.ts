@@ -15,4 +15,12 @@ export class ResourceService {
     return this.http.post<Resource>(`${environment.apiURL}/resources`, resource);
   }
 
+  getResourcesByMaintenanceManager(username: string): Observable<Resource[]>{
+    return this.http.get<Resource[]>(`${environment.apiURL}/users/${username}/resources`);
+  }
+
+  deleteResource(publicId: string){
+    return this.http.delete(`${environment.apiURL}/resources/${publicId}`);
+  }
+
 }

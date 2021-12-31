@@ -1,3 +1,4 @@
+import { ResourceService } from './../../services/resource.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -25,6 +26,7 @@ export class DeleteBtnComponent implements OnInit, ICellRendererAngularComp {
   constructor(
     private modalService: BsModalService,
     private userService: UserService,
+    private resourceService: ResourceService,
     private toaster: ToastrService
   ){
 
@@ -41,19 +43,32 @@ export class DeleteBtnComponent implements OnInit, ICellRendererAngularComp {
   }
 
   confirm(): void {
-    this.userService.deleteMaintenanceManager(this.params.data.username).subscribe({
-      next: res => {
-        this.toaster.success('User deleted successfully', 'Gestionnaire maintenance');
-      },
-      error: err => {
-        this.toaster.error('Something went wrong !', 'Gestionnaire maintenance');
-      }
-    });
+    if(this.params.data.username){
+      this.userService.deleteMaintenanceManager(this.params.data.username).subscribe({
+        next: res => {
+          this.toaster.success('User deleted successfully', 'Gestionnaire maintenance');
+        },
+        error: err => {
+          this.toaster.error('Something went wrong !', 'Gestionnaire maintenance');
+        }
+      });
+    }else if(this.params.data.publicId){
+      this.resourceService.deleteResource(this.params.data.publicId).subscribe({
+        next: res => {
+          this.toaster.success('Resource deleted successfully', 'Gestionnaire maintenance');
+        },
+        error: err => {
+          this.toaster.error('Something went wrong !', 'Gestionnaire maintenance');
+        }
+      });
+    }
+
     this.params.clicked(this.params);
     this.modalRef?.hide();
   }
  
   decline(): void {
+    console.log(this.params.data);
     this.modalRef?.hide();
   }
 

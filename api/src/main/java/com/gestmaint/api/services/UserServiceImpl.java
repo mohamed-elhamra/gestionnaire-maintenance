@@ -1,10 +1,12 @@
 package com.gestmaint.api.services;
 
+import com.gestmaint.api.dtos.ResourceDto;
 import com.gestmaint.api.dtos.UserDto;
 import com.gestmaint.api.entities.RoleEntity;
 import com.gestmaint.api.entities.UserEntity;
 import com.gestmaint.api.exceptions.GestMaintException;
 import com.gestmaint.api.mapper.Mapper;
+import com.gestmaint.api.repositories.ResourceRepository;
 import com.gestmaint.api.repositories.RoleRepository;
 import com.gestmaint.api.repositories.UserRepository;
 import com.gestmaint.api.utils.ERole;
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ResourceRepository resourceRepository;
     private final Mapper mapper;
 
     @Override
@@ -48,9 +51,14 @@ public class UserServiceImpl implements UserService {
     public UserDto saveUser(UserDto userDto) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         Optional<UserEntity> userByUsername = userRepository.findByUsername(userDto.getUsername());
+        Optional<UserEntity> userByEmail = userRepository.findByEmail(userDto.getEmail());
 
         if (userByUsername.isPresent()) {
             throw new GestMaintException("User already exits with this username");
+        }
+
+        if (userByEmail.isPresent()) {
+            throw new GestMaintException("User already exits with this email");
         }
 
         UserEntity createdUser = mapper.toUserEntity(userDto);
@@ -73,5 +81,13 @@ public class UserServiceImpl implements UserService {
 
         List<UserEntity> maintenanceManagers = userRepository.findByRole(maintenanceManagerRole);
         return mapper.toUserDtoList(maintenanceManagers);
+    }
+
+    @Override
+    public List<ResourceDto> getResourcesByMaintenanceManager(String username) {
+        UserEntity maintenanceManager = userRepository.findByUsername(username)
+                .orElseThrow(() -> new GestMaintException("No user found with this username : " + username));
+
+        return mapper.toResourceDtoList(resourceRepository.findByMaintenanceManager(maintenanceManager));
     }
 }

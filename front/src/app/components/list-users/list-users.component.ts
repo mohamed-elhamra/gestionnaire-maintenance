@@ -99,9 +99,9 @@ export class ListUsersComponent implements OnInit {
         this.rowData = res;
       },
       error: err => {
-        this.toaster.error('Bad credentials, try again', 'Gestionnaire maintenance');
+        this.toaster.error('Something went wrong !', 'Gestionnaire maintenance');
       }
-    })
+    });
   }
 
   onGridReady(params: any) {

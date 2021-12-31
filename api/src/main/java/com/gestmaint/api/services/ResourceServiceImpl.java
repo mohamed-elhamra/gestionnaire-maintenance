@@ -42,7 +42,7 @@ public class ResourceServiceImpl implements ResourceService {
         }
 
         resourceEntity.setMaintenanceManager(maintenanceManager);
-        resourceEntity.setPublicId(idGenerator.generateStringId(32));
+        resourceEntity.setPublicId(idGenerator.generateStringId(20));
         resourceEntity.setOutOfService(false);
 
         return mapper.toResourceDto(resourceRepository.save(resourceEntity));

@@ -34,6 +34,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .hasAuthority(ERole.ROLE_ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/users/maintenanceManagers")
                 .hasAuthority(ERole.ROLE_ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/users/*/resources")
+                .hasAuthority(ERole.ROLE_MAINTENANCE_MANAGER.name())
                 .antMatchers(HttpMethod.POST, "/resources")
                 .hasAuthority(ERole.ROLE_MAINTENANCE_MANAGER.name())
                 .antMatchers(HttpMethod.GET, "/resources")

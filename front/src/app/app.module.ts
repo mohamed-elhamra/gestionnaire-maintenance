@@ -18,6 +18,8 @@ import { ListResourcesComponent } from './components/list-resources/list-resourc
 import { CustomTooltipComponent } from './components/custom-tooltip/custom-tooltip.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CreateResourceComponent } from './components/create-resource/create-resource.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { TextCellRendrerComponent } from './components/text-cell-rendrer/text-cell-rendrer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { CreateResourceComponent } from './components/create-resource/create-res
     CreateUserComponent,
     ListResourcesComponent,
     CustomTooltipComponent,
-    CreateResourceComponent
+    CreateResourceComponent,
+    NavBarComponent,
+    TextCellRendrerComponent
   ],
   imports: [
     BrowserModule,

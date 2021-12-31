@@ -1,5 +1,6 @@
 package com.gestmaint.api.controllers;
 
+import com.gestmaint.api.dtos.ResourceDto;
 import com.gestmaint.api.dtos.UserDto;
 import com.gestmaint.api.requests.AuthenticationRequest;
 import com.gestmaint.api.responses.AuthenticationResponse;
@@ -61,6 +62,11 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable String username) {
         userService.deleteUser(username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{username}/resources")
+    public ResponseEntity<List<ResourceDto>> getResourcesByMaintenanceManager(@PathVariable String username){
+        return ResponseEntity.ok(userService.getResourcesByMaintenanceManager(username));
     }
 
 }

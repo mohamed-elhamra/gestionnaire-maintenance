@@ -1,23 +1,33 @@
 
-<button class="btn btn-sm btn-info" (click)="openModal(template)">Add user</button>
+<div class="row mt-4 mb-2">
+  <div class="col-6">
+    <h2>Maintenance managers</h2>
+  </div>
+  <div class="col-6 text-end">
+    <button class="btn btn-sm btn-info create-position" 
+                    (click)="openModal(template)">Create user</button>
+  </div>
+</div>
 
-<ag-grid-angular
-    style="width: 820px; height: 500px;"
-    class="ag-theme-alpine"
-    [frameworkComponents]="frameworkComponents" 
-    [rowData]="rowData"
-    [columnDefs]="columnDefs" 
-    [defaultColDef]="defaultColDef" 
-    [autoGroupColumnDef]="autoGroupColumnDef"
-    [gridOptions]="gridOptions"
-    [enableRangeSelection]="true"
-    [animateRows]="true"
-    [pagination]="true"
-    [suppressMovableColumns]="true" 
-    [suppressMovableColumns]="true" 
-    (gridReady)="onGridReady($event)"
->
-</ag-grid-angular>
+<div class="row">
+  <ag-grid-angular
+      style="height: 450px;"
+      class="ag-theme-alpine"
+      [frameworkComponents]="frameworkComponents" 
+      [rowData]="rowData"
+      [columnDefs]="columnDefs" 
+      [defaultColDef]="defaultColDef" 
+      [autoGroupColumnDef]="autoGroupColumnDef"
+      [gridOptions]="gridOptions"
+      [enableRangeSelection]="true"
+      [animateRows]="true"
+      [pagination]="true"
+      [suppressMovableColumns]="true" 
+      [suppressMovableColumns]="true" 
+      (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>
 
 
 <ng-template #template>

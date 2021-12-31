@@ -1,8 +1,35 @@
-<button class="btn btn-sm btn-info" (click)="openModal(template)">Create resource</button>
+<div class="row mt-4 mb-2">
+  <div class="col-6">
+    <h2>List of resources</h2>
+  </div>
+  <div class="col-6 text-end">
+    <button class="btn btn-sm btn-info" (click)="openModal(template)">Create resource</button>
+  </div>
+</div>
+
+<div class="row">
+  <ag-grid-angular
+      style="height: 450px;"
+      class="ag-theme-alpine"
+      [frameworkComponents]="frameworkComponents" 
+      [rowData]="rowData"
+      [columnDefs]="columnDefs" 
+      [defaultColDef]="defaultColDef" 
+      [autoGroupColumnDef]="autoGroupColumnDef"
+      [gridOptions]="gridOptions"
+      [enableRangeSelection]="true"
+      [animateRows]="true"
+      [pagination]="true"
+      [suppressMovableColumns]="true" 
+      [suppressMovableColumns]="true" 
+      (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</div>
 
 <ng-template #template>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Create user</h4>
+      <h4 class="modal-title pull-left">Create resource</h4>
       <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
