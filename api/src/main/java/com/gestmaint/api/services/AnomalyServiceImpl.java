@@ -38,10 +38,17 @@ public class AnomalyServiceImpl implements AnomalyService {
                 throw new GestMaintException("This resource is already out of service");
         });
 
-        Optional<AnomalyEntity> anomalyByTitle = anomalyRepository.findByTitle(anomalyDto.getTitle());
+        Optional<AnomalyEntity> anomalyByTitleAndDescription = anomalyRepository
+                .findByTitleAndDescription(anomalyDto.getTitle(), anomalyDto.getDescription());
 
-        if (anomalyByTitle.isPresent())
-            throw new GestMaintException("There is already an anomaly with this title, try to check the other section.");
+
+        if(anomalyByTitleAndDescription.isPresent()){
+            anomalyByTitleAndDescription.get().setStatus(EStatus.PROCESSING);
+            resourceByPublicId.setOutOfService(true);
+            resourceRepository.save(resourceByPublicId);
+
+            return mapper.toAnomalyDto(anomalyByTitleAndDescription.get());
+        }
 
         UserEntity maintenanceManager = resourceByPublicId.getMaintenanceManager();
 

@@ -15,4 +15,6 @@ public interface AnomalyRepository extends JpaRepository<AnomalyEntity, Long> {
 
     List<AnomalyEntity> findByTitleContainsAndResource(String title, ResourceEntity resource);
 
+    Optional<AnomalyEntity> findByTitleAndDescription(String title, String description);
+
 }

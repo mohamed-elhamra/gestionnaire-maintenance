@@ -1,0 +1,7 @@
+<span container="body" placement="left" [tooltip]="tolTemplate">
+    {{ publicId }}
+</span>
+
+<ng-template #tolTemplate>
+    <div [innerHtml]="html"></div>
+</ng-template>

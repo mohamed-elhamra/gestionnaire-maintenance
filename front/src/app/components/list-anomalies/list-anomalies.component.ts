@@ -1,3 +1,4 @@
+import { ResourceInfoCellRendererComponent } from './../resource-info-cell-renderer/resource-info-cell-renderer.component';
 import { CloseAnomalyBtnCellRendrerComponent } from './../close-anomaly-btn-cell-rendrer/close-anomaly-btn-cell-rendrer.component';
 import { JwtService } from './../../services/jwt.service';
 import { UserService } from 'src/app/services/user.service';
@@ -67,6 +68,7 @@ export class ListAnomaliesComponent implements OnInit {
         resizable: true,
         filter: 'agTextColumnFilter',
         cellClass: ['text-center'],
+        cellRenderer: 'resourceInfoCellRendrer'
       },
       {
         headerName: 'Status',
@@ -90,6 +92,7 @@ export class ListAnomaliesComponent implements OnInit {
     this.frameworkComponents = {
       closeAnomalyBtnCellRendrerComponent: CloseAnomalyBtnCellRendrerComponent,
       textCellRenderer: TextCellRendrerComponent,
+      resourceInfoCellRendrer: ResourceInfoCellRendererComponent
     };
 
     this.autoGroupColumnDef = {  };

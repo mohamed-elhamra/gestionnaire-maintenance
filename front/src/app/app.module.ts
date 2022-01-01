@@ -27,6 +27,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ListAnomaliesComponent } from './components/list-anomalies/list-anomalies.component';
 import { CloseAnomalyBtnCellRendrerComponent } from './components/close-anomaly-btn-cell-rendrer/close-anomaly-btn-cell-rendrer.component';
+import { ResourceInfoCellRendererComponent } from './components/resource-info-cell-renderer/resource-info-cell-renderer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { CloseAnomalyBtnCellRendrerComponent } from './components/close-anomaly-
     CreateAnomalyComponent,
     ListAnomaliesComponent,
     CloseAnomalyBtnCellRendrerComponent,
+    ResourceInfoCellRendererComponent,
   ],
   imports: [
     BrowserModule,
