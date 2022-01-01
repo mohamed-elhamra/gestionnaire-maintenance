@@ -82,7 +82,7 @@ export class ListAnomaliesComponent implements OnInit {
         cellClass: ['no-border', 'text-center'],
         width: 20,
         cellRendererParams: {
-          clicked: (params: any) => {},
+          clicked: (params: any) => this.updateAnomaly(params),
         },
       },
     ];
@@ -101,6 +101,18 @@ export class ListAnomaliesComponent implements OnInit {
     this.defaultColDef = {
       flex: 1,
     };
+  }
+
+  updateAnomaly(params: any) {
+    let anomalyToUpdate;
+    this.gridApi.forEachNode((node: any, index: any) => {
+      if (node.data.title === params.data.title) {
+        params.data.status = 'DONE';
+        node.data= params.data;
+        anomalyToUpdate = node.data;
+      }
+    });
+    this.gridApi.applyTransaction({ update: [anomalyToUpdate] });
   }
 
   onGridReady(params: any) {
