@@ -22,4 +22,8 @@ export class AnomalyService {
     return this.http.get<Anomaly[]>(`${environment.apiURL}/anomalies/${title}?resourcePublicId=${resourcePublicId}`);
   }
 
+  closeAnomaly(title: string): Observable<Anomaly>{
+    return this.http.get<Anomaly>(`${environment.apiURL}/anomalies/${title}/close`);
+  }
+
 }

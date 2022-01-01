@@ -1,5 +1,6 @@
 package com.gestmaint.api.controllers;
 
+import com.gestmaint.api.dtos.AnomalyDto;
 import com.gestmaint.api.dtos.ResourceDto;
 import com.gestmaint.api.dtos.UserDto;
 import com.gestmaint.api.requests.AuthenticationRequest;
@@ -67,6 +68,11 @@ public class UserController {
     @GetMapping("/{username}/resources")
     public ResponseEntity<List<ResourceDto>> getResourcesByMaintenanceManager(@PathVariable String username){
         return ResponseEntity.ok(userService.getResourcesByMaintenanceManager(username));
+    }
+
+    @GetMapping("/{username}/anomalies")
+    public  ResponseEntity<List<AnomalyDto>> getAnomaliesByUser(@PathVariable String username){
+        return ResponseEntity.ok(userService.getAnomaliesByUser(username));
     }
 
 }

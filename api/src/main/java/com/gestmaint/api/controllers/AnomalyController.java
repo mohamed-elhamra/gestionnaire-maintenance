@@ -28,4 +28,9 @@ public class AnomalyController {
         return ResponseEntity.ok(anomalyService.getAnomaliesByTitle(anomalyTitle, resourcePublicId));
     }
 
+    @GetMapping("/{anomalyTitle}/close")
+    public ResponseEntity<AnomalyDto> closeAnomaly(@PathVariable String anomalyTitle) {
+        return ResponseEntity.ok(anomalyService.closeAnomaly(anomalyTitle));
+    }
+
 }

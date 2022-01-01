@@ -8,7 +8,7 @@ public interface AnomalyService {
 
     AnomalyDto createAnomaly(AnomalyDto anomalyDto);
 
-    AnomalyDto closeAnomaly(String resourcePublicId);
+    AnomalyDto closeAnomaly(String anomalyTitle);
 
     List<AnomalyDto> getAnomaliesByTitle(String anomalyTitle, String resourcePublicId);
 

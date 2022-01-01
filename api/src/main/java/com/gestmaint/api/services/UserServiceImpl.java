@@ -1,5 +1,6 @@
 package com.gestmaint.api.services;
 
+import com.gestmaint.api.dtos.AnomalyDto;
 import com.gestmaint.api.dtos.ResourceDto;
 import com.gestmaint.api.dtos.UserDto;
 import com.gestmaint.api.entities.RoleEntity;
@@ -89,5 +90,13 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new GestMaintException("No user found with this username : " + username));
 
         return mapper.toResourceDtoList(resourceRepository.findByMaintenanceManager(maintenanceManager));
+    }
+
+    @Override
+    public List<AnomalyDto> getAnomaliesByUser(String username) {
+        UserEntity maintenanceManager = userRepository.findByUsername(username)
+                .orElseThrow(() -> new GestMaintException("No user found with this username : " + username));
+
+        return mapper.toAnomalyDtoList(maintenanceManager.getAssignedAnomalies());
     }
 }

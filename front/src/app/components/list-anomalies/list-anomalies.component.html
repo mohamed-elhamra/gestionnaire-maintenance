@@ -1,0 +1,25 @@
+<div class="row mt-4 mb-2">
+    <div class="col-6">
+      <h2>List of anomalies</h2>
+    </div>
+  </div>
+  
+  <div class="row">
+    <ag-grid-angular
+        style="height: 450px;"
+        class="ag-theme-alpine"
+        [frameworkComponents]="frameworkComponents" 
+        [rowData]="rowData"
+        [columnDefs]="columnDefs" 
+        [defaultColDef]="defaultColDef" 
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [gridOptions]="gridOptions"
+        [enableRangeSelection]="true"
+        [animateRows]="true"
+        [pagination]="true"
+        [suppressMovableColumns]="true" 
+        [suppressMovableColumns]="true" 
+        (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </div>

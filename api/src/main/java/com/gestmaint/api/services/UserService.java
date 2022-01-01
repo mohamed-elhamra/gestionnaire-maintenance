@@ -1,5 +1,6 @@
 package com.gestmaint.api.services;
 
+import com.gestmaint.api.dtos.AnomalyDto;
 import com.gestmaint.api.dtos.ResourceDto;
 import com.gestmaint.api.dtos.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,4 +16,6 @@ public interface UserService extends UserDetailsService {
     List<UserDto> getAllMaintenanceManagers();
 
     List<ResourceDto> getResourcesByMaintenanceManager(String username);
+
+    List<AnomalyDto> getAnomaliesByUser(String username);
 }

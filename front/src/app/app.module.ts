@@ -25,6 +25,8 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { CreateAnomalyComponent } from './components/create-anomaly/create-anomaly';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ListAnomaliesComponent } from './components/list-anomalies/list-anomalies.component';
+import { CloseAnomalyBtnCellRendrerComponent } from './components/close-anomaly-btn-cell-rendrer/close-anomaly-btn-cell-rendrer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     TextCellRendrerComponent,
     TicketComponent,
     CreateAnomalyComponent,
+    ListAnomaliesComponent,
+    CloseAnomalyBtnCellRendrerComponent,
   ],
   imports: [
     BrowserModule,

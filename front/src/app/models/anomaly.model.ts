@@ -1,10 +1,10 @@
 export class Anomaly {
 
-    title: String = '';
-    description: String = '';
-    date: String = '';
-    status: String = '';
-    assignee: String = '';
-    resourcePublicId: String = '';
+    title: string = '';
+    description: string = '';
+    date: string = '';
+    status: string = '';
+    assignee: string = '';
+    resourcePublicId: string = '';
 
 }

@@ -1,3 +1,4 @@
+import { ListAnomaliesComponent } from './components/list-anomalies/list-anomalies.component';
 import { CreateAnomalyComponent } from './components/create-anomaly/create-anomaly';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { RoleGuard } from './security/role.guard';
@@ -20,6 +21,7 @@ const routes: Routes = [
     ]
   },
   { path: 'resources/:publicId/anomaly', component: CreateAnomalyComponent },
+  { path: 'anomalies', component: ListAnomaliesComponent, canActivate: [RoleGuard] },
   { path: '**', component: LoginComponent },
 ];
 

@@ -1,3 +1,4 @@
+import { ERole } from './../../models/role.enum';
 import { AccountService } from './../../services/account.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { JwtService } from 'src/app/services/jwt.service';
@@ -17,6 +18,8 @@ export class NavBarComponent implements OnInit {
   //confirm modal
   modalRef?: BsModalRef;
 
+  isMaintenanceManager: boolean = true;
+
   constructor(
     private accountService: AccountService,
     private jwtService: JwtService,
@@ -28,6 +31,8 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.authStatus.subscribe((res) => {
       this.currentUser = this.jwtService.getInfos();
+      if(this.currentUser)
+        this.isMaintenanceManager = ERole.ROLE_MAINTENANCE_MANAGER === this.currentUser.authorities[0].authority;
     });
   }
 

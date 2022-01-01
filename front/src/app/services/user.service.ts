@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
+import { Anomaly } from '../models/anomaly.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class UserService {
 
   createMaintenanceManager(user: User): Observable<User>{
     return this.http.post<User>(`${environment.apiURL}/users`, user);
+  }
+
+  getAnomaliesByUser(username: string): Observable<Anomaly[]>{
+    return this.http.get<Anomaly[]>(`${environment.apiURL}/users/${username}/anomalies`);
   }
 
 }
