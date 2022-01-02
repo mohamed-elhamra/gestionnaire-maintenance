@@ -1,10 +1,10 @@
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResourceService } from './../../services/resource.service';
 import { Component, OnInit } from '@angular/core';
 import { Resource } from 'src/app/models/resource.model';
-
+declare var $ : any;
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -36,6 +36,12 @@ export class TicketComponent implements OnInit {
       });
     });
     
+  }
+
+  print(){
+    //(<any>$("#myDiv")).printElement();
+    //($("div.printArea") as any).printArea();
+    window.print();
   }
 
 }

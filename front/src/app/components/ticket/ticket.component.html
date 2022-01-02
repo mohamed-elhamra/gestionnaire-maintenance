@@ -1,8 +1,8 @@
 
 
 <div class="row justify-content-center mt-5 mb-2">
-    <div class="col-md-6 col-ms-12">
-        <div class="card" style="width: 100%;">
+    <div class="col-md-6 col-ms-12 text-center d-flex justify-content-center">
+        <div class="card myDivToPrint" style="width: 50%;">
             <div class="card-header">
                 <span class="card-title">
                     <b>Cilquez-ici: </b><a href="{{ resourceLinK }}">{{ resourceLinK }}</a>
@@ -11,14 +11,20 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-3 justify-content-center">
-                        <qr-code [value]="resourceLinK"></qr-code>
+                        <qr-code [size]="67" [value]="resourceLinK"></qr-code>
                     </div>
                     <div class="col-9">
                         <b>Flashez-moi</b>
-                        <p>Pou signaler un problème avec ce matériel</p>
+                        <p>Pour signaler un problème avec ce matériel</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-ms-12 text-center d-flex justify-content-center">
+        <button class="btn btn-info zz" (click)="print()"><i class="fa fa-print"></i> Print</button>
     </div>
 </div>
